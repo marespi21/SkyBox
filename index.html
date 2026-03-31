@@ -4,18 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SkyBox</title>
+  <meta http-equiv="refresh" content="0; url=src/views/dashboard/dashboard.html" />
   <!-- Tailwind CDN básico -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center">
   <main id="app" class="p-8 rounded-xl shadow-lg bg-slate-800 w-full max-w-xl text-center">
-    <h1 class="text-3xl font-bold text-slate-50 mb-6">SkyBox</h1>
-    <p class="text-slate-400 mb-8">Plataforma de drones de domicilios</p>
-    <a href="src/views/dashboard.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
-      Ir al Dashboard
+    <h1 class="text-3xl font-bold text-slate-50 mb-6">Redirigiendo al Dashboard...</h1>
+    <p class="text-slate-400 mb-8">Este es el punto de entrada principal de SkyBox.</p>
+    <a href="src/views/dashboard/dashboard.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+      Abrir Dashboard
     </a>
   </main>
 
-  <script src="./dist/index.js" defer></script>
+  <script type="module" src="./dist/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyBox - Gestión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./gestion.css">
+</head>
+<body>
+  <div class="gestion-shell">
+    <div class="animate-fade-in" style="padding: var(--spacing-xl);">
+      <header class="glass-effect" style="border-radius: 1rem; padding: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
+          <div>
+            <h2 class="text-gradient">Gestión de Entidades</h2>
+            <p style="color: var(--color-text-secondary);">Administra los recursos base del sistema SkyBox</p>
+          </div>
+          <a href="../dashboard/dashboard.html" class="btn-secondary" style="padding: 0.65rem 1rem; text-decoration: none; display: inline-flex; align-items: center;">Volver al dashboard</a>
+        </div>
+      </header>
+
+      <div class="gestion-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: var(--spacing-xl);">
+        <section class="card-premium animate-slide-up">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl); gap: 12px; flex-wrap: wrap;">
+            <h3><span style="color: var(--color-success);">●</span> Restaurantes</h3>
+            <button id="agregarRestauranteBtn" class="btn-primary" type="button" style="padding: 0.5rem 1rem; font-size: 0.875rem;">+ Nuevo Registro</button>
+          </div>
+
+          <div style="margin-bottom: var(--spacing-lg);">
+            <input id="restauranteInput" type="text" placeholder="Escribe el nombre del restaurante" style="width: 100%;" class="restauranteInput">
+          </div>
+
+          <div id="restaurantesLista" style="display: flex; flex-direction: column; gap: var(--spacing-md);"></div>
+        </section>
+
+        <section class="card-premium animate-slide-up" style="animation-delay: 150ms;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl); gap: 12px; flex-wrap: wrap;">
+            <h3><span style="color: var(--color-success);">●</span> Flota de Drones</h3>
+            <button class="btn-primary" type="button" style="padding: 0.5rem 1rem; font-size: 0.875rem;">+ Añadir Dron</button>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <th style="padding: var(--spacing-sm); color: var(--color-text-secondary); font-size: 0.85rem;">MODELO</th>
+                  <th style="padding: var(--spacing-sm); color: var(--color-text-secondary); font-size: 0.85rem;">ESTADO</th>
+                  <th style="padding: var(--spacing-sm); color: var(--color-text-secondary); font-size: 0.85rem; text-align: right;">ACCIÓN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(51, 65, 85, 0.5);">
+                  <td style="padding: var(--spacing-md); font-weight: 500;">Sky-X1 Alpha</td>
+                  <td style="padding: var(--spacing-md);">
+                    <span class="badge badge-success">
+                      <span class="status-indicator status-active" style="margin-right: 6px;"></span> Available
+                    </span>
+                  </td>
+                  <td style="padding: var(--spacing-md); text-align: right;">
+                    <a href="#" style="font-size: 0.875rem; font-weight: 600; color: var(--color-primary);">Gestionar</a>
+                  </td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(51, 65, 85, 0.5);">
+                  <td style="padding: var(--spacing-md); font-weight: 500;">Sky-X2 Stealth</td>
+                  <td style="padding: var(--spacing-md);">
+                    <span class="badge badge-error">
+                      <span class="status-indicator status-inactive" style="margin-right: 6px;"></span> Busy
+                    </span>
+                  </td>
+                  <td style="padding: var(--spacing-md); text-align: right;">
+                    <a href="#" style="font-size: 0.875rem; font-weight: 600; color: var(--color-primary);">Gestionar</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="../../../dist/index.js"></script>
+</body>
+</html>

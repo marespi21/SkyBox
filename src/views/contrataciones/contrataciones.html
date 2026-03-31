@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyBox · Contrataciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./contrataciones.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">SkyBox · Operaciones</p>
+        <h1>Gestión de Contrataciones</h1>
+        <p class="hero-copy">
+          Administra asignaciones de drones con una vista clara, premium y alineada al sistema de diseño de SkyBox.
+        </p>
+      </div>
+
+      <div class="hero-badge">
+        <span class="dot"></span>
+        12 operaciones activas hoy
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel actions-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Acciones rápidas</h2>
+            <p>Accede al flujo principal de contratación desde un solo lugar.</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="toolbar-actions">
+            <a class="btn btn-secondary-link" href="../dashboard/dashboard.html">Volver al dashboard</a>
+            <button class="btn btn-primary" type="button">Nueva contratación</button>
+          </div>
+
+          <label class="search-box" for="busqueda-contratacion">
+            <span>Buscar</span>
+            <input
+              id="busqueda-contratacion"
+              type="search"
+              placeholder="Cliente, dron o estado"
+              aria-label="Buscar contratación"
+            >
+          </label>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Resumen de contrataciones">
+        <article class="panel stat-card">
+          <span class="stat-label">Activas</span>
+          <strong class="stat-value">08</strong>
+          <small class="stat-meta success">+2 esta mañana</small>
+        </article>
+
+        <article class="panel stat-card">
+          <span class="stat-label">Pendientes</span>
+          <strong class="stat-value">03</strong>
+          <small class="stat-meta warning">Requieren revisión</small>
+        </article>
+
+        <article class="panel stat-card">
+          <span class="stat-label">En proceso</span>
+          <strong class="stat-value">04</strong>
+          <small class="stat-meta danger">Alta demanda</small>
+        </article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="section-heading">
+          <div>
+            <h2>Listado reciente</h2>
+            <p>Consulta el estado actual de cada contratación registrada.</p>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente / Restaurante</th>
+                <th>Dron asignado</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="ID">CTR-001</td>
+                <td data-label="Cliente / Restaurante">
+                  <strong>Pizza Nova</strong>
+                  <span>Zona Centro</span>
+                </td>
+                <td data-label="Dron asignado">Sky-Drone A12</td>
+                <td data-label="Fecha">31/03/2026</td>
+                <td data-label="Estado"><span class="badge badge-success">Activa</span></td>
+                <td data-label="Acciones">
+                  <div class="action-group">
+                    <button class="btn btn-ghost" type="button">Ver detalle</button>
+                    <button class="btn btn-ghost" type="button">Editar</button>
+                    <button class="btn btn-danger" type="button">Cancelar</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-label="ID">CTR-002</td>
+                <td data-label="Cliente / Restaurante">
+                  <strong>Burger Point</strong>
+                  <span>Zona Norte</span>
+                </td>
+                <td data-label="Dron asignado">Sky-Drone B07</td>
+                <td data-label="Fecha">31/03/2026</td>
+                <td data-label="Estado"><span class="badge badge-danger">En proceso</span></td>
+                <td data-label="Acciones">
+                  <div class="action-group">
+                    <button class="btn btn-ghost" type="button">Ver detalle</button>
+                    <button class="btn btn-ghost" type="button">Editar</button>
+                    <button class="btn btn-danger" type="button">Cancelar</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-label="ID">CTR-003</td>
+                <td data-label="Cliente / Restaurante">
+                  <strong>Sushi Go</strong>
+                  <span>Zona Premium</span>
+                </td>
+                <td data-label="Dron asignado">Sky-Drone C03</td>
+                <td data-label="Fecha">30/03/2026</td>
+                <td data-label="Estado"><span class="badge badge-warning">Pendiente</span></td>
+                <td data-label="Acciones">
+                  <div class="action-group">
+                    <button class="btn btn-ghost" type="button">Ver detalle</button>
+                    <button class="btn btn-ghost" type="button">Editar</button>
+                    <button class="btn btn-danger" type="button">Cancelar</button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-label="ID">CTR-004</td>
+                <td data-label="Cliente / Restaurante">
+                  <strong>Taco Express</strong>
+                  <span>Zona Sur</span>
+                </td>
+                <td data-label="Dron asignado">Sky-Drone D19</td>
+                <td data-label="Fecha">29/03/2026</td>
+                <td data-label="Estado"><span class="badge badge-success">Disponible</span></td>
+                <td data-label="Acciones">
+                  <div class="action-group">
+                    <button class="btn btn-ghost" type="button">Ver detalle</button>
+                    <button class="btn btn-ghost" type="button">Editar</button>
+                    <button class="btn btn-danger" type="button">Eliminar</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
