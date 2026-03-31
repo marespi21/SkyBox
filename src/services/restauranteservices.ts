@@ -1,4 +1,5 @@
 import { Restaurante, RestaurantStatus } from "../models/restaurante.js";
+import { Dron } from "../models/dronmodels.js";
 
 export class RestauranteService {
   private restaurantes: Restaurante[] = [];
@@ -8,20 +9,14 @@ export class RestauranteService {
   }
 
   // CREATE
-  crear(valorInput: string): Restaurante {
+  crearRestaurante(valorInput: string): Restaurante {
     const nombreLimpio = valorInput.trim();
 
     if (!nombreLimpio) {
       throw new Error("Debes escribir un nombre válido");
     }
 
-    const nuevoId = `RST-${String(this.restaurantes.length + 1).padStart(3, "0")}`;
-    const nuevoRestaurante = new Restaurante(
-      nuevoId,
-      nombreLimpio,
-      "Sin dirección",
-      "activo"
-    );
+    const nuevoRestaurante = crearRestauranteConId(nombreLimpio);
 
     this.restaurantes.push(nuevoRestaurante);
 
@@ -35,7 +30,7 @@ export class RestauranteService {
   ): void {
     const manejarCreacion = (): void => {
       try {
-        this.crear(input.value);
+        this.crearRestaurante(input.value);
         input.value = "";
         this.renderizarRestaurantes(contenedor);
         input.focus();
@@ -151,5 +146,134 @@ export class RestauranteService {
   // DELETE
   eliminar(id: string): void {
     this.restaurantes = this.restaurantes.filter((restaurante) => restaurante.id !== id);
+  }
+} 
+
+
+
+// Función auxiliar para crear un restaurante con un ID único basado en la fecha actual
+function crearRestauranteConId(nombre: string): Restaurante {
+  const nuevoId = `RST-${String(Date.now()).slice(-6)}`;
+  return new Restaurante(nuevoId, nombre, "Sin dirección", "activo");
+}
+
+export class DronService {
+  private drones: Dron[] = [];
+
+  constructor(data: Dron[]) {
+    this.drones = [...data];
+  }
+
+  crearDron(modelo: string): Dron {
+    const modeloLimpio = modelo.trim();
+    if (!modeloLimpio) {
+      throw new Error("Debes escribir un modelo válido");
+    }
+
+    const nuevoDron = new Dron(
+      `DRN-${String(Date.now()).slice(-6)}`,
+      modeloLimpio,
+      "libre",
+      null
+    );
+
+    this.drones.push(nuevoDron);
+    return nuevoDron;
+  }
+
+  listarDrones(): Dron[] {
+    return [...this.drones];
+  }
+
+  obtenerDronPorId(id: string): Dron | undefined {
+    return this.drones.find((dron) => dron.id === id);
+  }
+
+  editarDron(id: string, nuevoModelo: string): void {
+    const dron = this.obtenerDronPorId(id);
+    if (!dron) throw new Error("Dron no encontrado");
+
+    const modeloLimpio = nuevoModelo.trim();
+    if (!modeloLimpio) throw new Error("Debes escribir un modelo válido");
+
+    dron.modelo = modeloLimpio;
+  }
+
+  eliminarDron(id: string): void {
+    this.drones = this.drones.filter((dron) => dron.id !== id);
+  }
+
+  conectarFlota(boton: HTMLButtonElement, contenedor: HTMLTableSectionElement): void {
+    const manejarAlta = (): void => {
+      const modelo = window.prompt("Modelo del dron");
+      if (!modelo) return;
+
+      try {
+        this.crearDron(modelo);
+        this.renderizarFlota(contenedor);
+      } catch (error) {
+        alert(error instanceof Error ? error.message : "No se pudo agregar el dron");
+      }
+    };
+
+    this.renderizarFlota(contenedor);
+    boton.addEventListener("click", manejarAlta);
+  }
+
+  private renderizarFlota(contenedor: HTMLTableSectionElement): void {
+    contenedor.innerHTML = "";
+
+    this.drones.forEach((dron) => {
+      const fila = document.createElement("tr");
+
+      const modeloCelda = document.createElement("td");
+      modeloCelda.style.padding = "var(--spacing-md)";
+      modeloCelda.style.fontWeight = "500";
+      modeloCelda.textContent = dron.modelo;
+
+      const statusCelda = document.createElement("td");
+      statusCelda.style.padding = "var(--spacing-md)";
+      statusCelda.textContent = dron.status;
+
+      const restauranteCelda = document.createElement("td");
+      restauranteCelda.style.padding = "var(--spacing-md)";
+      restauranteCelda.textContent = dron.idRestaurante || "N/A";
+
+      const actionsCelda = document.createElement("td");
+      actionsCelda.style.padding = "var(--spacing-md)";
+      actionsCelda.style.textAlign = "right";
+
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Editar";
+      editBtn.className = "btn-secondary";
+      editBtn.type = "button";
+      editBtn.style.marginRight = "8px";
+      editBtn.addEventListener("click", () => {
+        const nuevoModelo = window.prompt("Nuevo modelo del dron", dron.modelo);
+        if (!nuevoModelo) return;
+
+        this.editarDron(dron.id, nuevoModelo);
+        this.renderizarFlota(contenedor);
+      });
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Borrar";
+      deleteBtn.className = "btn-secondary btn-danger-soft";
+      deleteBtn.type = "button";
+      deleteBtn.addEventListener("click", () => {
+        this.eliminarDron(dron.id);
+        this.renderizarFlota(contenedor);
+      });
+
+      actionsCelda.appendChild(editBtn);
+      actionsCelda.appendChild(deleteBtn);
+
+      fila.appendChild(modeloCelda);
+      fila.appendChild(statusCelda);
+      fila.appendChild(restauranteCelda);
+      fila.appendChild(actionsCelda);
+
+      contenedor.appendChild(fila);
+    });
   }
 }

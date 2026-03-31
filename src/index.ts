@@ -1,5 +1,6 @@
 import { restaurantes } from "./data/tsrestaurante.js";
-import { RestauranteService } from "./services/restauranteservices.js";
+import { drones } from "./data/drons.js";
+import { RestauranteService, DronService } from "./services/restauranteservices.js";
 
 // Clean Architecture - Orquestador principal
 // Capa de entrada / aplicación mínima
@@ -10,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const restauranteInput = document.getElementById("restauranteInput");
   const agregarRestauranteBtn = document.getElementById("agregarRestauranteBtn");
   const restaurantesLista = document.getElementById("restaurantesLista");
+
+  const agregarDronBtn = document.getElementById("agregarDronBtn");
+  const dronesLista = document.getElementById("dronesLista");
 
   if (
     restauranteInput instanceof HTMLInputElement &&
@@ -22,6 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
       agregarRestauranteBtn,
       restaurantesLista
     );
+  }
+
+  if (
+    agregarDronBtn instanceof HTMLButtonElement &&
+    dronesLista instanceof HTMLTableSectionElement
+  ) {
+    const dronService = new DronService(drones);
+    dronService.conectarFlota(agregarDronBtn, dronesLista);
   }
 
   const appRoot = document.getElementById("app");
